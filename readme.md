@@ -1,0 +1,4 @@
+# CAUSES OF DEATH SEPARATED FROM SEX, YEAR, DEATH CODE BETWEEN 2006 E 2016
+## CSV IS AT DATA FOLDER
+
+- More info at the pdf file in this folder. 
