@@ -35,7 +35,7 @@ histplot <- function(columns, title1, names1, ylab1, xlab1, border1, colours) {
 }
 
 # Subset 
-death_married <- c("Y07","Y070") 
+death_married <- c("Y07","Y070","Y060","Y06") 
 dm <- dt[which(dt$cause.details %in% death_married), ]
 boxplota(dm, dm$sum.of.selected, dm$sex, "Quantidade de mortes",
          "Sexo", "Total de assassinatos por conjugue")
@@ -59,9 +59,8 @@ print(proporcao_mulheres) # 16,64%  mulheres (21582)
 print(proporcao_por_sexo) # Mulheres correspondem a apenas 19% da presença masculina
 # na base
 
-
 histplot(murder_tot,  "Total de assassinatos por sexo", 
-         c("F","M"), "Sexo", "Total", "red")
+         c("F","M"), "Sexo", "Total","darkgrey","darkgrey")
 
 # total de mortos por conjugue
 # total de mulheres mortas na base
@@ -215,4 +214,31 @@ legend("topright",
        c("Mulheres","Homens"),
        fill = c("pink","lightblue")
 )
-  
+
+# média da idade dos homens e mulheres no dataset
+
+# casamentos infantis
+death_married <- c("Y07","Y070","Y060","Y06") 
+print(death_married)
+dt_woman_child_married <- dt_woman[which(dt_woman$cause.details %in% death_married 
+                                   & (dt_woman$less1 > 0 | dt_woman$X1 > 0 |
+                                        dt_woman$X2 > 0 | dt_woman$X3 > 0 |
+                                        dt_woman$X4 > 0 | dt_woman$X5to9 > 0 |
+                                        dt_woman$X10to14 > 0)),]
+
+dt_man_child_married <- dt_man[which(dt_man$cause.details %in% death_married 
+                                         & (dt_man$less1 > 0 | dt_man$X1 > 0 |
+                                              dt_man$X2 > 0 | dt_man$X3 > 0 |
+                                              dt_man$X4 > 0 | dt_man$X5to9 > 0 |
+                                              dt_man$X10to14 > 0)),]
+
+# Países com mais casamentos infantis
+
+dt_child_married <- dt[which(dt$cause.details %in% death_married 
+                                     & (dt$less1 > 0 | dt$X1 > 0 |
+                                          dt$X2 > 0 | dt$X3 > 0 |
+                                          dt$X4 > 0 | dt$X5to9 > 0 |
+                                          dt$X10to14 > 0)),]
+
+countries_top_woman_marriage <- unique(dt_woman_child_married$country)
+View(dt_child_married)  
