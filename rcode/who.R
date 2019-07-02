@@ -146,7 +146,7 @@ murder_tot4 <- c(sum_f4,sum_m4)
 
 par(bg = "white")
 histplot(murder_tot4,  "Assassinatos causados por estupro no mundo", 
-         c(paste("mulheres","-",sum_f4, "casos","\n",round((sum_f4/sum_m4)* 100)," % dos casos masculinos"),paste("homens","-",sum_m4, "casos")), "mortes", "sexo", "#8A0829", c("#DF013A","#8A0829"))
+         c(paste("mulheres","-",sum_f4, "casos","\n",round((sum_f4/sum_f),5)* 100," % dos casos"),paste("homens","-",sum_m4, "casos","\n",round((sum_m4/sum_m),5)* 100," % dos casos masculinos")), "mortes", "sexo", "#8A0829", c("#DF013A","#8A0829"))
 # 158 para mulheres contra 361 para homens
 
 # Total de mulheres e homens na base por idade 
