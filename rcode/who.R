@@ -61,11 +61,11 @@ print(nrow(dt)) # 29475
 print(nrow(dt_woman)) # 11580
 print(nrow(dt_man)) # 17895
 sum_f <- sum(dt_woman$sum.of.selected)
-print(sum_f) # 21582 mulheres
+print(sum_f) # 176200 mulheres
 # total de homens mortos
 dt_man <- dt[which(dt$sex == "M"), ]
 sum_m <- sum(dt_man$sum.of.selected) 
-print(sum_m) # 108065 homens
+print(sum_m) # 1363047 homens
 murder_tot <- c(sum_f,sum_m)
 print(sum_f+sum_m)
 
@@ -95,8 +95,8 @@ sum_m1 <- sum(dt_man1$sum.of.selected)
 print(sum_m1)
 murder_tot1 <- c(sum_f1,sum_m1)
 
-histplot(murder_tot1,  "Mortes causadas por conjugue no mundo", 
-         c(paste("mulheres"," - ",sum_f1, "casos \n",round(proporcao_por_sexo*100),"% do homens na base"),paste("homens"," - ",sum_m1, "casos \n",floor(100-(proporcao_por_sexo*100)),"% a mais")), "mortes", "sexo", "#8A0829", c("#8A0829", "#DF013A"))
+histplot(murder_tot1,  "Assassinatos causados por conjugue no mundo", 
+         c(paste("mulheres"," - ",sum_f1, "casos \n",round((sum_f1/sum_f),3)*100,"% dos casos"),paste("homens"," - ",sum_m1, "casos \n",round(sum_m1/sum_m,4)*100,"% dos casos")), "mortes", "sexo", "#8A0829", c("#8A0829", "#DF013A"))
 
 # total de mortos por conhecidos
 # total de mulheres mortas na base
@@ -112,25 +112,25 @@ murder_tot2 <- c(sum_f2,sum_m2)
 # Considerando a p
 
 par( bg= "white")
-histplot(murder_tot2,  "Mortes causadas por conhecidos no mundo", 
-       c(paste("mulheres","-",sum_f2, " casos","\n ",floor(proporcao_mulheres*100),"% dos homens"),paste("homens","-",sum_m2," casos", "\n", round(100-proporcao_mulheres*100),"% mais")), "mortes", "sexo", "#8A0829", c("#8A0829", "#DF013A"))
+histplot(murder_tot2,  "Assassinatos causados por conhecidos no mundo", 
+       c(paste("mulheres","-",sum_f2, " casos","\n ",round(sum_f2/sum_f,4)*100,"% dos homens"),paste("homens","-",sum_m2," casos", "\n", round(sum_m2/sum_m,5)*100,"% mais")), "mortes", "sexo", "#8A0829", c("#8A0829", "#DF013A"))
 # Considerando a proporção em há 5 vezes mais homens na base o total de 
 # assassinatos de mulheres seria 5 vezes maior do que o de homens
 
 # Por negligência e abandono
 # total de mulheres mortas na base
-death_neg <- c("Y06","Y060", "Y061","Y062","Y068","Y069") 
+death_neg <- c("Y06","Y060", "Y061","Y062") 
 dt_woman3 <- dt[which(dt$sex == "F" & dt$cause.details %in% death_neg), ]
 sum_f3 <- sum(dt_woman3$sum.of.selected) # 398
 print(sum_f3) 
 # total de homens mortos
-dt_man3 <- dt[which(dt$sex == "M" & dt$cause.details %in% death_know), ]
+dt_man3 <- dt[which(dt$sex == "M" & dt$cause.details %in% death_neg), ]
 sum_m3 <- sum(dt_man3$sum.of.selected)  # 361
 print(sum_m3)
 murder_tot3 <- c(sum_f3,sum_m3)
 
-histplot(murder_tot3,  "Mortes causadas por negligência no mundo", 
-         c("Mulheres","Homens"), "mortes", "sexo",  "#8A0829", c("#8A0829", "#DF013A"))
+histplot(murder_tot1,  "Assassinatos causados por negligência no mundo", 
+         c(paste("mulheres"," - ",sum_f3, "casos \n",round((sum_f3/sum_f),4)*100,"% dos casos"),paste("homens"," - ",sum_m3, "casos \n",round(sum_m3/sum_m,5)*100,"% dos casos")), "mortes", "sexo", "#8A0829", c("#8A0829", "#DF013A"))
 
 # Total de casos de estupro
 # total de mulheres mortas na base
